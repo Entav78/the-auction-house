@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
+
+import logo from '@/assets/logo.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,11 +22,8 @@ const Header = () => {
       <header className="bg-header text-white p-4 shadow-md relative z-50">
         {/* Logo + Hamburger */}
         <div className="flex items-center justify-between w-full">
-          {/* Left spacer (hidden on mobile, flex on desktop) */}
-          <div className="hidden sm:flex w-6" />
-
-          {/* Centered logo */}
-          <div className="flex-1 flex justify-center">
+          {/* Logo left on large screens, centered on small screens */}
+          <div className="flex-1 sm:flex-none sm:mr-4 flex justify-center sm:justify-start">
             <img
               src={logo}
               alt="The Auction House Logo"
@@ -79,15 +78,15 @@ const Header = () => {
 
           {/* Navigation (desktop only) */}
           <nav className="hidden sm:flex gap-6 text-lg font-medium pr-4">
-            <a href="#" className="hover:underline">
+            <Link to="/" className="hover:underline">
               Home
-            </a>
-            <a href="#" className="hover:underline">
+            </Link>
+            <Link to="/listings" className="hover:underline">
               Listings
-            </a>
-            <a href="#" className="hover:underline">
+            </Link>
+            <Link to="/profile" className="hover:underline">
               Profile
-            </a>
+            </Link>
           </nav>
         </div>
       </header>
@@ -119,22 +118,31 @@ const Header = () => {
 
         <ul className="flex flex-col gap-4 p-4">
           <li>
-            <a href="#" className="hover:underline">
+            <Link
+              to="/"
+              onClick={() => setMenuOpen(false)}
+              className="hover:underline"
+            >
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="hover:underline">
+            <Link
+              to="/listings"
+              onClick={() => setMenuOpen(false)}
+              className="hover:underline"
+            >
               Listings
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="hover:underline">
+            <Link
+              to="/profile"
+              onClick={() => setMenuOpen(false)}
+              className="hover:underline"
+            >
               Profile
-            </a>
-          </li>
-          <li className="mt-auto text-sm text-center pt-8 border-t border-white">
-            © 2025 The Auction House
+            </Link>
           </li>
         </ul>
       </div>
